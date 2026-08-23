@@ -201,8 +201,8 @@ export const siteContent = {
       suffix: "/100",
       label: { pt: "Core Web Vitals médio (Lighthouse)", en: "Average Core Web Vitals (Lighthouse)" },
     },
-    { id: "repos", value: 60, label: { pt: "Repositórios públicos", en: "Public repositories" } },
-    { id: "stars", value: 350, label: { pt: "Stars no GitHub", en: "GitHub stars" } },
+    { id: "apps", value: 12, label: { pt: "Apps publicados nas lojas", en: "Apps published on app stores" } },
+    { id: "clients", value: 25, label: { pt: "Clientes atendidos", en: "Clients served" } },
   ] satisfies StatItem[],
 
   // TODO: replace remaining placeholders with real client/product logos in /public/clients/.
