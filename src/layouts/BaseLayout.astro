@@ -1,0 +1,102 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { siteContent } from "../content/site";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const pageTitle = title ?? `${siteContent.meta.name} — ${siteContent.person.role.pt}`;
+const pageDescription = description ?? siteContent.meta.description.pt;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL("/og-image.jpg", Astro.site);
+
+const socialLinks = Object.values(siteContent.social).filter(
+  (url): url is string => typeof url === "string" && !url.startsWith("TODO")
+);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      name: siteContent.meta.name,
+      url: Astro.site?.toString(),
+      jobTitle: siteContent.person.role.pt,
+      description: siteContent.meta.description.pt,
+      ...(socialLinks.length ? { sameAs: socialLinks } : {}),
+    },
+    {
+      "@type": "ProfessionalService",
+      name: siteContent.meta.name,
+      url: Astro.site?.toString(),
+      description: siteContent.meta.description.pt,
+      areaServed: "Remote",
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <ClientRouter />
+  </head>
+  <body class="bg-bg text-text font-sans antialiased">
+    <div
+      class="pointer-events-none fixed -inset-24 z-0 bg-tac-grid opacity-60"
+      data-bg-layer
+      aria-hidden="true"
+    >
+    </div>
+    <div class="relative z-10">
+      <slot />
+    </div>
+    <script>
+      import { initLang } from "../i18n/applyLang";
+      import { initAnimations } from "../scripts/gsapInit";
+
+      document.addEventListener("astro:page-load", () => {
+        initLang();
+        initAnimations();
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @media (hover: hover) and (pointer: fine) {
+    body {
+      cursor:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><g stroke='%237fbf3f' stroke-width='1.5'><line x1='10' y1='0' x2='10' y2='6'/><line x1='10' y1='14' x2='10' y2='20'/><line x1='0' y1='10' x2='6' y2='10'/><line x1='14' y1='10' x2='20' y2='10'/></g></svg>")
+          10 10,
+        auto;
+    }
+  }
+</style>

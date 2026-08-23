@@ -1,0 +1,62 @@
+---
+import { siteContent } from "../content/site";
+import HeroMarquee from "./HeroMarquee.astro";
+import HeroVisual from "./HeroVisual.svelte";
+import CrosshairCorners from "./ui/CrosshairCorners.astro";
+
+const { hero, sections } = siteContent;
+---
+
+<section id="top" class="relative overflow-hidden pb-16 pt-32 md:pt-40">
+  <div class="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+    <div>
+      <p class="hud-label mb-4 text-xs">
+        <span aria-hidden="true">{sections.hero.index} //</span>{" "}
+        <span data-i18n="sections.hero.eyebrow">{sections.hero.eyebrow.pt}</span>
+      </p>
+      <h1
+        data-hero-headline
+        class="text-4xl font-semibold tracking-tight text-text sm:text-5xl md:text-6xl"
+        data-i18n="hero.headline"
+      >
+        {hero.headline.pt}
+      </h1>
+      <p
+        data-hero-subheadline
+        class="mt-5 max-w-xl text-lg text-text-dim"
+        data-i18n="hero.subheadline"
+      >
+        {hero.subheadline.pt}
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a
+          data-hero-cta
+          href={hero.ctaPrimary.href}
+          target="_blank"
+          rel="noreferrer noopener"
+          class="group relative rounded px-5 py-3 text-sm font-semibold text-bg bg-alert transition-shadow duration-200 hover:shadow-[0_0_16px_rgba(232,197,71,0.5)]"
+          data-i18n="hero.ctaPrimary.label"
+        >
+          <CrosshairCorners />
+          {hero.ctaPrimary.label.pt}
+        </a>
+        <a
+          data-hero-cta
+          href={hero.ctaSecondary.anchor}
+          class="group glow-border hud-label relative rounded px-5 py-3 text-xs"
+          data-i18n="hero.ctaSecondary.label"
+        >
+          <CrosshairCorners />
+          {hero.ctaSecondary.label.pt}
+        </a>
+      </div>
+    </div>
+
+    <div class="flex justify-center md:justify-end" data-hero-visual-wrap>
+      <HeroVisual client:idle />
+    </div>
+  </div>
+</section>
+
+<HeroMarquee />

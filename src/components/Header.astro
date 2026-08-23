@@ -1,0 +1,56 @@
+---
+import { siteContent } from "../content/site";
+import LangToggle from "./LangToggle.svelte";
+import AvailabilityBadge from "./AvailabilityBadge.astro";
+
+const { nav, meta } = siteContent;
+---
+
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-colors duration-300"
+  data-header
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a href="#top" class="hud-label text-sm">
+      {meta.domain}
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Navegação principal">
+      <a
+        href="#services"
+        class="hud-label text-xs text-text-dim transition-colors hover:text-accent"
+        data-i18n="nav.portfolio">{nav.portfolio.pt}</a
+      >
+      <a
+        href="#stack"
+        class="hud-label text-xs text-text-dim transition-colors hover:text-accent"
+        data-i18n="nav.skills">{nav.skills.pt}</a
+      >
+      <a
+        href="#contact"
+        class="hud-label text-xs text-text-dim transition-colors hover:text-accent"
+        data-i18n="nav.contact">{nav.contact.pt}</a
+      >
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <AvailabilityBadge />
+      <LangToggle client:load />
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-header]");
+
+  function onScroll() {
+    if (!header) return;
+    header.classList.toggle("bg-bg/85", window.scrollY > 24);
+    header.classList.toggle("backdrop-blur", window.scrollY > 24);
+    header.classList.toggle("border-accent-dim/40", window.scrollY > 24);
+  }
+
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>

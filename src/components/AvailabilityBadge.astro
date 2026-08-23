@@ -1,0 +1,11 @@
+---
+import { siteContent } from "../content/site";
+---
+
+<span class="hidden items-center gap-2 rounded-full border border-accent-dim/60 px-3 py-1 sm:flex">
+  <span class="relative flex h-2 w-2" aria-hidden="true">
+    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
+    <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+  </span>
+  <span class="hud-label text-[10px]" data-i18n="availabilityBadge">{siteContent.availabilityBadge.pt}</span>
+</span>
