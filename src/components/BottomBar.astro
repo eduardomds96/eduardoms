@@ -1,0 +1,20 @@
+---
+import { siteContent } from "../content/site";
+import SocialIcons from "./ui/SocialIcons.astro";
+
+const { meta, location, bottomBar } = siteContent;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-accent-dim/20 px-6 py-6">
+  <div
+    class="mx-auto flex max-w-6xl flex-col items-center gap-3 text-center text-xs text-text-dim sm:flex-row sm:justify-between sm:text-left"
+  >
+    <p class="hud-label text-[10px]">
+      © {year} {meta.name} <span aria-hidden="true">·</span>{" "}
+      <span data-i18n="location">{location.pt}</span> <span aria-hidden="true">·</span>{" "}
+      <span data-i18n="bottomBar.madeWith">{bottomBar.madeWith.pt}</span>
+    </p>
+    <SocialIcons size={16} />
+  </div>
+</footer>

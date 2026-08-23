@@ -1,0 +1,38 @@
+---
+import { siteContent } from "../content/site";
+import SectionHeading from "./ui/SectionHeading.astro";
+
+const { stack, sections } = siteContent;
+---
+
+<section id="stack" class="mx-auto max-w-6xl px-6 py-24" aria-labelledby="stack-heading">
+  <div data-reveal-group>
+    <SectionHeading
+      id="stack-heading"
+      index={sections.stack.index}
+      eyebrow={sections.stack.eyebrow}
+      eyebrowPath="sections.stack.eyebrow"
+      heading={sections.stack.heading}
+      headingPath="sections.stack.heading"
+    />
+
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        stack.categories.map((category, catIndex) => (
+          <div data-reveal>
+            <p class="hud-label mb-3 text-xs" data-i18n={`stack.categories.${catIndex}.name`}>
+              {category.name.pt}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {category.items.map((item) => (
+                <span class="glow-border rounded px-3 py-1.5 text-sm text-text-dim transition-colors hover:text-accent">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

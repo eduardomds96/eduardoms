@@ -1,0 +1,43 @@
+---
+import { siteContent } from "../content/site";
+import SectionHeading from "./ui/SectionHeading.astro";
+import StatsCounter from "./StatsCounter.svelte";
+import CrosshairCorners from "./ui/CrosshairCorners.astro";
+
+const { stats, sections } = siteContent;
+---
+
+<section id="stats" class="mx-auto max-w-6xl px-6 py-24" aria-labelledby="stats-heading">
+  <div data-reveal-group>
+    <SectionHeading
+      id="stats-heading"
+      index={sections.stats.index}
+      eyebrow={sections.stats.eyebrow}
+      eyebrowPath="sections.stats.eyebrow"
+      heading={sections.stats.heading}
+      headingPath="sections.stats.heading"
+    />
+
+    <div class="grid grid-cols-2 gap-6 md:grid-cols-5">
+      {
+        stats.map((stat, index) => (
+          <div class="group glow-border relative rounded-lg p-5 text-center" data-reveal>
+            <CrosshairCorners />
+            <p class="hud-label text-3xl font-semibold text-accent md:text-4xl">
+              {typeof stat.value === "number" ? (
+                <StatsCounter client:visible value={stat.value} suffix={stat.suffix} />
+              ) : (
+                <span class="text-alert" title="Placeholder — substituir por valor real">
+                  TODO
+                </span>
+              )}
+            </p>
+            <p class="mt-2 text-xs text-text-dim" data-i18n={`stats.${index}.label`}>
+              {stat.label.pt}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

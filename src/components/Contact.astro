@@ -1,0 +1,50 @@
+---
+import { siteContent } from "../content/site";
+import CrosshairCorners from "./ui/CrosshairCorners.astro";
+import SocialIcons from "./ui/SocialIcons.astro";
+
+const { contact, sections } = siteContent;
+---
+
+<section id="contact" class="mx-auto max-w-3xl px-6 py-24 text-center" aria-labelledby="contact-heading">
+  <div data-reveal-group>
+    <p class="hud-label mb-4 text-xs" data-reveal>
+      <span aria-hidden="true">{sections.contact.index} //</span>{" "}
+      <span data-i18n="sections.contact.eyebrow">{sections.contact.eyebrow.pt}</span>
+    </p>
+
+    <h2
+      id="contact-heading"
+      class="text-3xl font-semibold tracking-tight text-text md:text-4xl"
+      data-i18n="contact.headline"
+      data-reveal
+    >
+      {contact.headline.pt}
+    </h2>
+
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4" data-reveal>
+      <a
+        href={contact.ctaPrimary.href}
+        target="_blank"
+        rel="noreferrer noopener"
+        class="group relative rounded px-5 py-3 text-sm font-semibold text-bg bg-alert transition-shadow duration-200 hover:shadow-[0_0_16px_rgba(232,197,71,0.5)]"
+        data-i18n="contact.ctaPrimary.label"
+      >
+        <CrosshairCorners />
+        {contact.ctaPrimary.label.pt}
+      </a>
+      <a
+        href={contact.ctaSecondary.href}
+        class="group glow-border hud-label relative rounded px-5 py-3 text-xs"
+        data-i18n="contact.ctaSecondary.label"
+      >
+        <CrosshairCorners />
+        {contact.ctaSecondary.label.pt}
+      </a>
+    </div>
+
+    <div class="mt-10 flex justify-center" data-reveal>
+      <SocialIcons />
+    </div>
+  </div>
+</section>
