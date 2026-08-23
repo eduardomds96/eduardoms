@@ -1,0 +1,22 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<span aria-hidden="true" class={`pointer-events-none absolute inset-0 ${className}`}>
+  <i
+    class="corner-tick absolute left-0 top-0 h-2.5 w-2.5 border-l border-t border-accent-dim transition-colors duration-200 group-hover:border-accent"
+  ></i>
+  <i
+    class="corner-tick absolute right-0 top-0 h-2.5 w-2.5 border-r border-t border-accent-dim transition-colors duration-200 group-hover:border-accent [animation-delay:60ms]"
+  ></i>
+  <i
+    class="corner-tick absolute bottom-0 left-0 h-2.5 w-2.5 border-b border-l border-accent-dim transition-colors duration-200 group-hover:border-accent [animation-delay:120ms]"
+  ></i>
+  <i
+    class="corner-tick absolute bottom-0 right-0 h-2.5 w-2.5 border-b border-r border-accent-dim transition-colors duration-200 group-hover:border-accent [animation-delay:180ms]"
+  ></i>
+</span>

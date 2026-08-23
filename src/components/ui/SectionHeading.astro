@@ -1,0 +1,24 @@
+---
+import type { L10n } from "../../content/site";
+
+interface Props {
+  index: string;
+  eyebrow: L10n;
+  eyebrowPath: string;
+  heading: L10n;
+  headingPath: string;
+  id?: string;
+}
+
+const { index, eyebrow, eyebrowPath, heading, headingPath, id } = Astro.props;
+---
+
+<div class="mb-10 md:mb-14" data-reveal>
+  <p class="hud-label mb-3 text-xs">
+    <span aria-hidden="true">{index} //</span>{" "}
+    <span data-i18n={eyebrowPath}>{eyebrow.pt}</span>
+  </p>
+  <h2 id={id} class="text-3xl font-semibold tracking-tight text-text md:text-4xl" data-i18n={headingPath}>
+    {heading.pt}
+  </h2>
+</div>
