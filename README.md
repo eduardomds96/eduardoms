@@ -25,4 +25,4 @@ Node.js 22.12+ é exigido (ver `engines` em `package.json`).
 
 ## Live
 
-_(em breve)_
+[eduardoms.vercel.app](https://eduardoms.vercel.app/)
