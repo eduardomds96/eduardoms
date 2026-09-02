@@ -167,7 +167,7 @@ export const siteContent = {
         pt: "Lojas performáticas, headless quando faz sentido, com Core Web Vitals no verde e checkout otimizado.",
         en: "High-performance stores, headless when it makes sense, with green Core Web Vitals and an optimized checkout.",
       },
-      tags: ["headless", "graphql", "prisma", "tray", "shopify", "nuvemshop"],
+      tags: ["headless", "graphql", "prisma", "tray", "shopify", "nuvemshop", "salesforce commerce cloud"],
       scope: {
         pt: "Arquitetura headless (storefront + CMS/API) · catálogo e carrinho performáticos · checkout otimizado para conversão · integração de pagamentos e frete · Core Web Vitals no verde.",
         en: "Headless architecture (storefront + CMS/API) · performant catalog and cart · conversion-optimized checkout · payment and shipping integrations · green Core Web Vitals.",
@@ -232,7 +232,7 @@ export const siteContent = {
       },
       {
         name: { pt: "CMS / No-code", en: "CMS / No-code" },
-        items: ["WordPress", "Webflow"],
+        items: ["WordPress", "Webflow", "Salesforce Commerce Cloud"],
       },
       {
         name: { pt: "Workflow", en: "Workflow" },
