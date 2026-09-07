@@ -12,6 +12,12 @@ export default defineConfig({
   output: 'static',
   // Swap to `@astrojs/cloudflare` (same `output: 'static'` config shape) to deploy on Cloudflare Pages instead.
   adapter: vercel(),
+  build: {
+    // The whole page's CSS is small (~9KB) — inline it into the HTML instead of a
+    // blocking <link>, trading a slightly bigger document for one fewer
+    // render-blocking network round trip.
+    inlineStylesheets: 'always'
+  },
   integrations: [svelte(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
