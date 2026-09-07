@@ -91,8 +91,11 @@ function initHeroSvgDraw(): void {
   const shapes = Array.from(svg.querySelectorAll<SVGGeometryElement>("[stroke]"));
   if (!shapes.length) return;
 
-  shapes.forEach((shape) => {
-    const length = shape.getTotalLength();
+  // Read every length first (one forced layout at most), then write styles —
+  // avoids a read/write/read/write chain across shapes.
+  const lengths = shapes.map((shape) => shape.getTotalLength());
+  shapes.forEach((shape, i) => {
+    const length = lengths[i];
     if (!shape.hasAttribute("stroke-dasharray")) {
       shape.style.strokeDasharray = `${length}`;
     }
@@ -116,12 +119,20 @@ function initScrollReveals(): void {
   if (prefersReducedMotion()) return;
   registerScrollTrigger();
 
-  document.querySelectorAll<HTMLElement>("[data-reveal-group]").forEach((group) => {
+  const groups = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal-group]"));
+  const groupTargets = groups.map((group) => {
     const items = Array.from(group.querySelectorAll<HTMLElement>("[data-reveal]"));
-    const targets = items.length ? items : [group];
+    return items.length ? items : [group];
+  });
 
-    gsap.set(targets, { autoAlpha: 0, y: 20 });
+  // Write every group's starting styles first...
+  groupTargets.forEach((targets) => gsap.set(targets, { autoAlpha: 0, y: 20 }));
 
+  // ...then create all the ScrollTriggers (each reads the trigger's layout
+  // position) in a separate pass, so the browser flushes layout once instead
+  // of once per group.
+  groups.forEach((group, i) => {
+    const targets = groupTargets[i];
     ScrollTrigger.create({
       trigger: group,
       start: "top 85%",
