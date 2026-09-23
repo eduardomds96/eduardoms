@@ -53,16 +53,16 @@ export const siteContent = {
     name: "Eduardo Mendonça",
     domain: "eduardoms.dev",
     description: {
-      pt: "Desenvolvedor Fullstack Sênior com expertise em Front-end Web & Mobile. Sites, e-commerce e apps que entregam performance real.",
-      en: "Senior Fullstack Developer specialized in Web & Mobile Front-end. Websites, e-commerce and apps that deliver real performance.",
+      pt: "Frontend Sênior com visão de arquitetura e atuação full-stack, especializado em Web & Mobile. Sites, e-commerce e apps que entregam performance real.",
+      en: "Senior Frontend Engineer with an architecture mindset and full-stack range, specialized in Web & Mobile. Websites, e-commerce and apps that deliver real performance.",
     } satisfies L10n,
   },
 
   person: {
     name: "Eduardo Mendonça",
     role: {
-      pt: "Desenvolvedor Fullstack Sênior · Expertise em Front-end Web & Mobile",
-      en: "Senior Fullstack Developer · Web & Mobile Front-end Expertise",
+      pt: "Frontend Sênior com visão de arquitetura e atuação full-stack · Web & Mobile",
+      en: "Senior Frontend Engineer with an architecture mindset and full-stack range · Web & Mobile",
     } satisfies L10n,
   },
 
@@ -119,8 +119,8 @@ export const siteContent = {
       en: "Eduardo Mendonça",
     } satisfies L10n,
     subheadline: {
-      pt: "Desenvolvedor Fullstack Sênior · Expertise em Front-end Web & Mobile",
-      en: "Senior Fullstack Developer · Web & Mobile Front-end Expertise",
+      pt: "Frontend Sênior com visão de arquitetura e atuação full-stack · Web & Mobile",
+      en: "Senior Frontend Engineer with an architecture mindset and full-stack range · Web & Mobile",
     } satisfies L10n,
     marquee: [
       { pt: "Disponível para projetos", en: "Available for projects" },
